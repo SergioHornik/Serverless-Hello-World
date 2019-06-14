@@ -1,10 +1,18 @@
-var { create, jsonMiddleware } = require("slspress");
-var handler = create();
+"use strict";
 
-handler
-  .on("handle")
-  .middleware(jsonMiddleware)
-  .get("/Hello World", (req, res) => {
-    return res.ok("hello-world");
-  });
-module.exports = hanlder.export();
+module.exports.hello = async event => {
+  console.log("event", event);
+  const { name } = event.queryStringParameterss;
+  // console.log("event.QueryStringParameters", event.QueryStringParameters);
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        message: name ? "Hello " + name : "Hello World"
+      },
+      null,
+      2
+    )
+  };
+};
