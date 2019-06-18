@@ -2,7 +2,8 @@
 
 module.exports.hello = async event => {
   console.log("event", event);
-  const { name } = event.queryStringParameterss;
+  const { name } =
+    event && event.queryStringParameters ? event.queryStringParameters : {};
   // console.log("event.QueryStringParameters", event.QueryStringParameters);
 
   return {
